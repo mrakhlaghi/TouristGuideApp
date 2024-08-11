@@ -1,4 +1,4 @@
-## 🚨 This project is now archived
+##  This project has dark and light theme . Clone the project to see the diffrent themes
 
 
 
