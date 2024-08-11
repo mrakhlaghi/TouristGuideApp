@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { DarkModeProvider } from "@/context/DarkModeContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} bg-secondary-0 `}>
+        <DarkModeProvider>
+          <div className="w-full h-full bg-cover bg-secondary-0  ">
+            <Header />
+            <div className="w-full container py-16">{children}</div>
+          </div>
+        </DarkModeProvider>
+      </body>
     </html>
   );
 }
