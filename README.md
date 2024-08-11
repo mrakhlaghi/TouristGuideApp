@@ -2,8 +2,8 @@
 
 [**This project is now archived and is no longer maintained.**](https://github.com/iaincollins/nextjs-starter/issues/122)
 
-![Alt text](/public/images/1.png "Home page")
-![Alt text](/public/images/1.png "Optional title")
+![Alt text](/images/1.png "Home page")
+![Alt text](/images/1.png "Optional title")
 
 I'm happy so many people found this project useful, but it's now out of date and many of the features of this starter project are now redundant as Next.js has evolved considerably over the last few years and now has native support for features such as CSS and SASS and for API routes without requiring a custom server.
 
