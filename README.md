@@ -46,6 +46,15 @@ If you wanted to run this site in production, you should install modules then bu
     npm install
     npm run build
     npm start
+    
+if you have problem with installing with npm you should install pnpm and locally and install with pnpm :
+
+    npm install -g pnpm
+    
+then 
+
+    pnpm install
+    
 
 You should run `npm run build` again any time you make changes to the site.
 
