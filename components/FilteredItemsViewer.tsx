@@ -1,17 +1,26 @@
 "use-client";
-import { data } from "@/database";
 import React, { useEffect, useState } from "react";
 import BusinessCard from "./BusinessCard";
 import { useSearchParams } from "next/navigation";
 import { Business } from "@/types";
+import axios from "axios";
 
 function FilteredItemsViewer() {
-  const [businesses, setBusinesses] = useState(data);
+  const [businesses, setBusinesses] = useState<Business[]>([]);
   const [queryParams, setQueryParams] = useState<{ [k: string]: string }>({});
 
   const [filteredBusinesses, setFilteredBusinesses] = useState<Business[]>([]);
 
   const searchParams = useSearchParams();
+
+  useEffect(()=>{
+    const getData= async ()=>{
+     const {data} =await axios.get("/api/data")
+     setBusinesses(data.data)
+    }
+
+    getData()
+},[])
 
   useEffect(() => {
     const params = Object.fromEntries(searchParams.entries());

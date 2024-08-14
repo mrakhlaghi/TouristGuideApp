@@ -3,8 +3,11 @@
 import Image from "next/image";
 import MainBusinessCard from "@/components/MainBusinessCard";
 import StoreCard from "@/components/StoreCard";
+import { useEffect } from "react";
+import axios from "axios";
 
 const HomePage = () => {
+ 
   return (
     <>
       <div className="flex flex-col gap-y-11 justify-start items-start divide-y divide-gray-600">

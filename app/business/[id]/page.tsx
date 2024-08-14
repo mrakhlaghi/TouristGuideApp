@@ -1,13 +1,15 @@
 "use client";
 
 import BusinessCard from "@/components/BusinessCard";
-import { data } from "@/database";
+import { businessData } from "@/database";
 import { Business, Timetable } from "@/types";
 import React, { useEffect, useMemo, useState } from "react";
 import Map from "@/components/Map/Map";
 import Image from "next/image";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import dynamic from "next/dynamic";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function BusinessPage({ params }: any) {
   const Map = useMemo(
@@ -21,9 +23,18 @@ function BusinessPage({ params }: any) {
 
   const [business, setBusiness] = useState<Business>();
   useEffect(() => {
-    const selectedData = data.find((item) => item.id === params.id);
-    console.log("🚀 ~ useEffect ~ selectedData:", selectedData);
-    setBusiness(selectedData);
+    const getData = async () => {
+      const { data } = await axios.get("/api/data");
+      const selectedData = data.data.find(
+        (item: Business) => item.id === params.id
+      );
+      setBusiness(selectedData);
+    };
+    try {
+      getData();
+    } catch (error: any) {
+      toast.error(error?.message);
+    }
   }, []);
 
   return (
@@ -97,8 +108,13 @@ function BusinessPage({ params }: any) {
                         <span className="flex flex-col justify-start items-center ">
                           {day}:
                         </span>{" "}
-                        {(business.workTime.work_hours.timetable as Record<keyof Timetable, any>)[day as keyof Timetable].map(
-                          (time :any, index : any) => (
+                        {(
+                          business.workTime.work_hours.timetable as Record<
+                            keyof Timetable,
+                            any
+                          >
+                        )[day as keyof Timetable].map(
+                          (time: any, index: any) => (
                             <span
                               className="text-teal-500 dark:text-yellow-300"
                               key={index}
@@ -141,23 +157,21 @@ function BusinessPage({ params }: any) {
               </div>
             </div>
             <div className="w-1/2">
-            <Image
-              src="/image/map.png"
-              width={1000}
-              height={1000}
-              alt="map"
-              className="w-full h-full object-cover shadow-lg rounded-md"
-            />
-            {/* <Map
+              <Image
+                src="/image/map.png"
+                width={1000}
+                height={1000}
+                alt="map"
+                className="w-full h-full object-cover shadow-lg rounded-md"
+              />
+              {/* <Map
               item={{
                 latitude: business.latitude,
                 longitude: business.longitude,
               }}
             /> */}
+            </div>
           </div>
-          </div>
-        
-         
         </div>
       )}
     </div>

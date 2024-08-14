@@ -1,6 +1,6 @@
 import { Business } from "./types";
 
-export const data: Business[] = [
+export const businessData: Business[] = [
   {
     id: "00002756-f4aa-42c4b-ae38-66db6fa83e63",
     title: "Al Wardi  Trading Shop",
